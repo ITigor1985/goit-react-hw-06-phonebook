@@ -40,8 +40,4 @@ ul {
   padding-left: 0;
   list-style-type: none;
 }
-a{
-  color: black;
-  text-decoration: none;
-}
 `;
