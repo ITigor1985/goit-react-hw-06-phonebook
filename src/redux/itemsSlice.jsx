@@ -20,6 +20,7 @@ export const itemsSlice = createSlice({
   },
 });
 
+export const selectItems = state => state.items;
 export const { add, remove } = itemsSlice.actions;
 
 // const myReducerItems = createReducer(initialState, {

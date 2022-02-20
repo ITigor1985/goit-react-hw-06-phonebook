@@ -1,6 +1,6 @@
 import { FormInput } from './ContactForm.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { add } from '../../redux/itemsSlice';
+import { add, selectItems } from '../../redux/itemsSlice';
 import { Formik, Field, Form } from 'formik';
 import { nanoid } from 'nanoid';
 
@@ -10,7 +10,7 @@ const initialState = {
 };
 
 function ContactForm() {
-  const contacts = useSelector(state => state.items);
+  const contacts = useSelector(selectItems);
 
   const dispatch = useDispatch();
 
