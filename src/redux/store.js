@@ -1,5 +1,6 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { createAction, createReducer, combineReducers } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware, createSlice} from '@reduxjs/toolkit';
+
+import {combineReducers } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
 
@@ -10,25 +11,49 @@ const initialState = [
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 
-export const add = createAction('myItems/add');
-export const remove = createAction('myItems/remove');
 
-const myReducerItems = createReducer(initialState, {
-  [add]: (state, action) => [action.payload, ...state],
-  [remove]: (state, action) => {
-    return state.filter(contact => contact.id !== action.payload);
+const itemsSlice = createSlice({
+  name: 'items',
+  initialState,
+  reducers: {
+    add(state, action){
+      return [action.payload, ...state]
+    },
+    remove(state, action){
+      return state.filter(contact => contact.id !== action.payload);
+    },    
   },
-});
+})
+
+export const { add, remove} = itemsSlice.actions
+
+// const myReducerItems = createReducer(initialState, {
+//   [add]: (state, action) => [action.payload, ...state],
+//   [remove]: (state, action) => {
+//     return state.filter(contact => contact.id !== action.payload);
+//   },
+// });
 // -----------------------------------------------------------------------------
-const initialStateFilter = '';
 
-export const setFilter = createAction('contacts/setFilter');
 
-const myFilter = createReducer(initialStateFilter, {
-  [setFilter]: (state, action) => {
-    return (state = action.payload);
+const filterSlice = createSlice({
+  name: 'filter',
+  initialState: '',
+  reducers: {
+    setFilter(state, action){
+      return state = action.payload;
+    },   
   },
-});
+})
+
+export const {setFilter} = filterSlice.actions
+
+
+// const myFilter = createReducer(initialStateFilter, {
+//   [setFilter]: (state, action) => {
+//     return (state = action.payload);
+//   },
+// });
 
 // -----------------------------------------------------------------------------
 
@@ -39,8 +64,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  items: myReducerItems,
-  filter: myFilter,
+  items: itemsSlice.reducer,
+  filter: filterSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

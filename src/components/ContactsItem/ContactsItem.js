@@ -1,6 +1,6 @@
 import propTypes from "prop-types";
 import { Contact, ContactWrapper } from "./ContactsItem.styled";
-import { remove } from "redux/store";
+import { remove } from "../../redux/store";
 import { useDispatch } from 'react-redux';
 const ContactsItem = ({ id, name, number}) => {
   const dispatch = useDispatch();
