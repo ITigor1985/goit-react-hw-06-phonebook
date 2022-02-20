@@ -1,6 +1,6 @@
 import { FormInput } from './ContactForm.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { add } from '../../redux/store';
+import { add } from '../../redux/itemsSlice';
 import { Formik, Field, Form } from 'formik';
 import { nanoid } from 'nanoid';
 
