@@ -8,7 +8,8 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 const theme = {
-  main: 'blue',
+  main: '#005fad',
+  secondry: 'red',
 };
 
 ReactDOM.render(

@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+const selectColor = ({ type, theme }) =>
+  type === 'submit'
+    ? `2px solid ${theme.main}}`
+    : `2px solid ${theme.secondry}`;
+
 export const PageButton = styled.button`
   display: inline-flex;
   margin: 10px;
@@ -14,7 +19,7 @@ export const PageButton = styled.button`
   font-family: 'Roboto Condensed', Тahoma, sans-serif;
   background: #fff;
   cursor: pointer;
-  border: 2px solid #005fad;
+  border: ${selectColor};
   overflow: hidden;
   z-index: 1;
   transition: color 0.5s;
