@@ -2,6 +2,7 @@ import propTypes from 'prop-types';
 import { Contact, ContactWrapper } from './ContactsItem.styled';
 import { remove } from '../../redux/itemsSlice';
 import { useDispatch } from 'react-redux';
+import Button from 'components/Buttons/Button';
 const ContactsItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
   return (
@@ -10,9 +11,11 @@ const ContactsItem = ({ id, name, number }) => {
         <span>{name}:</span>
         <span>{number} </span>
       </ContactWrapper>
-      <button type="button" onClick={() => dispatch(remove(id))}>
-        Delete
-      </button>
+      <Button
+        type="button"
+        text="Delete"
+        onClick={() => dispatch(remove(id))}
+      />
     </Contact>
   );
 };

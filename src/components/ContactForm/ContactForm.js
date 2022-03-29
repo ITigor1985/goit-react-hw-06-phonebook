@@ -1,8 +1,9 @@
-import { FormInput } from './ContactForm.styled';
+import { FormInput, InputLabel } from './ContactForm.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { add, selectItems } from '../../redux/itemsSlice';
 import { Formik, Field, Form } from 'formik';
 import { nanoid } from 'nanoid';
+import Button from 'components/Buttons/Button';
 
 const initialState = {
   name: '',
@@ -33,7 +34,7 @@ function ContactForm() {
   return (
     <Formik initialValues={initialState} onSubmit={handleSubmit}>
       <Form autoComplete="off">
-        <label htmlFor="name">Name</label>
+        <InputLabel htmlFor="name">Name</InputLabel>
         <Field
           as={FormInput}
           type="text"
@@ -43,7 +44,7 @@ function ContactForm() {
           required
         />
 
-        <label htmlFor="number">Phone number</label>
+        <InputLabel htmlFor="number">Phone number</InputLabel>
         <Field
           as={FormInput}
           type="tel"
@@ -53,7 +54,9 @@ function ContactForm() {
           required
         />
 
-        <button type="submit">Add contact</button>
+        <Button type="submit" text="Add contact" />
+
+        {/* <button type="submit">Add contact</button> */}
       </Form>
     </Formik>
   );
